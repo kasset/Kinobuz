@@ -3,6 +3,7 @@ package kz.arbuz.kinobuz.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kz.arbuz.kinobuz.data.entity.ApiMovie
@@ -18,7 +19,7 @@ class MovieViewModel(
     fun dispatch(action: Action) {
         when (action) {
             Action.onCreated -> {
-                GlobalScope.launch {
+                viewModelScope.launch {
                     _top250Movies.value = getTop250MoviesUseCase.invoke()
                 }
             }
