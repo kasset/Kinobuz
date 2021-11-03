@@ -8,6 +8,6 @@ class GetTop250MoviesUseCase(
 ) {
 
     suspend operator fun invoke(): List<ApiMovie> {
-        return service.getMovies().items
+        return service.getMovies()
     }
 }

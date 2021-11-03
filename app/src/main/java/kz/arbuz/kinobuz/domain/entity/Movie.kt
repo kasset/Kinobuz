@@ -1,4 +1,4 @@
-package kz.arbuz.kinobuz
+package kz.arbuz.kinobuz.domain.entity
 
 import kz.arbuz.kinobuz.data.entity.ApiMovie
 

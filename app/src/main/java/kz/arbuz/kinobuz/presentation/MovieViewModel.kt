@@ -19,7 +19,7 @@ class MovieViewModel(
     fun dispatch(action: Action) {
         when (action) {
             Action.onCreated -> {
-                viewModelScope.launch {
+                GlobalScope.launch {
                     _top250Movies.value = getTop250MoviesUseCase.invoke()
                 }
             }
