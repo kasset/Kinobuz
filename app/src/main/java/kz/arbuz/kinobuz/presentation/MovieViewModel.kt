@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kz.arbuz.kinobuz.data.entity.ApiMovie
@@ -16,17 +17,9 @@ class MovieViewModel(
     private val _top250Movies = MutableLiveData<List<ApiMovie>>(emptyList())
     val top250Movies: LiveData<List<ApiMovie>> = _top250Movies
 
-    fun dispatch(action: Action) {
-        when (action) {
-            Action.onCreated -> {
-                GlobalScope.launch {
-                    _top250Movies.value = getTop250MoviesUseCase.invoke()
-                }
-            }
+    fun getMovies() {
+        viewModelScope.launch(Dispatchers.IO) {
+            _top250Movies.value = getTop250MoviesUseCase.invoke()
         }
-    }
-
-    sealed class Action {
-        object onCreated: Action()
     }
 }
