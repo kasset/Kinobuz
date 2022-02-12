@@ -12,12 +12,14 @@ import kz.arbuz.kinobuz.R
 
 class MovieAdapter(
     private val fragment: TopMoviesFragment
-): RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     private val items get() = fragment.moviesList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout_item_movie, parent, false))
+        ViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_item_movie, parent, false)
+        )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
@@ -25,7 +27,7 @@ class MovieAdapter(
 
     override fun getItemCount() = items.size
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie: ApiMovie) {
             val nameTextView = itemView.findViewById<TextView>(R.id.name)

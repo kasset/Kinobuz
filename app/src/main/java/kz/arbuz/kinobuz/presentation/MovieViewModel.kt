@@ -18,7 +18,7 @@ class MovieViewModel(
     val top250Movies: LiveData<List<ApiMovie>> = _top250Movies
 
     fun getMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch() {
             _top250Movies.value = getTop250MoviesUseCase.invoke()
         }
     }
